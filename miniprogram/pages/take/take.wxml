@@ -1,0 +1,90 @@
+<!--pages/qu/qu.wxml-->
+
+
+        <van-field
+            value="{{ start_location }}"
+            placeholder="请输入取件地点"
+            label="取件地点"
+            left-icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E5%8F%96%E4%B8%AD%20(1).png?sign=756fbe9b677dadc2b90c8dc0e613fcd1&t=1696952610"
+            clearable
+            label-class="ziti"
+            input-class="ziti"
+            placeholder-style="font-size:32rpx;"
+            bind:change="onChange_inputstart"
+        />
+
+       
+        <van-cell title-class="ziti" icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E6%94%B6%E8%B4%A7%20%E6%94%B6.png?sign=00ab08f7e3d275ba9c8696d1db983890&t=1696945606" title="收件地址" bind:click="go_bushouhuo" value="{{end_location}}" is-link value-class="ziti"/>
+      
+
+       <van-cell title-class="ziti" icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/allocation-%E5%B9%B2%E7%BA%BF%E8%B6%85%E6%97%B6.png?sign=aaeaa10f8427ea3a948d3b4c2330d00f&t=1696950793" title="取件时间" bind:click="popup_starttime" value="{{start_time}}" is-link value-class="ziti"/>
+        <van-popup show="{{ starttime_show }}" z-index="100" round position="bottom" duration>
+            <van-datetime-picker
+              type="year-month date time"
+              min-date="{{ minDate }}"
+              title="选择取件时间"
+              bind:change="starttime_change"
+              bind:confirm="starttime_confirm"
+              bind:cancel="starttime_cancel"
+            />
+        </van-popup> 
+       <van-cell title-class="ziti" icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E5%BE%85%E5%8F%91%E8%B4%A7%E9%80%89%E4%B8%AD.png?sign=100d2331749e7be6ddccc1b0d235525f&t=1696867515" title="送达时间" bind:click="popup_endtime" value="{{end_time}}" is-link value-class="ziti"/>
+        <van-popup show="{{ endtime_show }}" z-index="100" round position="bottom" duration>
+            <van-datetime-picker
+              type="year-month date time"
+              min-date="{{ minDate }}"
+              title="选择送达时间"
+              bind:change="endtime_change"
+              bind:confirm="endtime_confirm"
+              bind:cancel="endtime_cancel"
+            />
+        </van-popup> 
+        <van-field
+            value="{{ cost }}"
+            placeholder="只能输入非零的正整数"
+            label="跑腿费(元)"
+            left-icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E9%92%B1.png?sign=2021a6e9a1fc0e07a84cc934b4a9bb0f&t=1696857798"
+            clearable
+            label-class="ziti"
+            placeholder-style="font-size:32rpx;"
+            maxlength="4"
+            error="{{error_red}}"
+            bind:change="onChange_cost"
+        />
+
+        <van-cell title="取件详细备注" title-class="ziti" icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E5%A4%87%E6%B3%A8.png?sign=777e0c43afc035a1c167bdad9ab1444b&t=1696952823"/>
+        
+        <view class="b_notes">
+                        <view class="b_text">
+                              <textarea value="{{notes}}" bindinput="noteInput" maxlength="100" placeholder="请把取件码或取件短信内容请粘贴到这里，内容是默认隐藏，不会泄露的，只有跑腿员接单后才可查看"></textarea>
+                              <view class="b_less">{{note_counts}}/100</view>
+                        </view>
+        </view>
+
+        
+
+
+        <view class="checked">
+            <text>是否重物</text>
+            <van-switch checked="{{ checked }}" size="35rpx" bind:change="onChange_check" />
+        </view>
+        
+        <view class="yuer">
+            <view class="yuer_left">
+                    <view style="font-weight: 400;">使用余额支付</view>
+                    <view class="yuer_leftke">
+                            我的余额 ￥{{balance}} 
+                            <text wx:if="{{cost>balance}}" style="color: red;" bindtap="go_parse">（余额不足）立即充值</text>
+                    </view>
+            </view>
+            <view class="yuer_right">
+                <van-switch checked="{{ user_parse }}" size="35rpx" bind:change="onChange_userparse" />
+            </view>
+        </view>
+        <van-submit-bar
+            price="{{ cost*100 }}"
+            button-text="立即支付"
+            bind:submit="onSubmit"
+        />
+        
+

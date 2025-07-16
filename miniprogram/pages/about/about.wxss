@@ -1,0 +1,33 @@
+/* pages/about/about.wxss */
+
+
+image{
+  width: 100%;
+  height: 400rpx;
+
+}
+view{
+  width: 80%;
+  text-indent: 2em;
+  margin-left: 7%;
+  padding: 30rpx;
+  line-height: 80rpx;
+  font-size: 25rpx;
+  background-color: white;
+  height: 90%;
+  border-radius: 5%;
+
+ 
+
+}
+.top{
+  margin-top: 70rpx;
+  
+}
+.bo{
+  margin-top: -57rpx;
+  
+}
+
+
+

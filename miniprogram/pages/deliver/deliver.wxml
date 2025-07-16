@@ -1,0 +1,117 @@
+<!--pages/song/song.wxml-->
+<view class="jijian">
+    <van-cell title-class="ziti" icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80.png?sign=304c3798a16baa25b20ac3977daa3ee7&t=1696857430" title="取货地址" bind:click="go_bushouhuo" value="{{start_location}}" is-link value-class="ziti"/>
+
+        
+        <van-cell title-class="ziti" icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/brand-01.png?sign=6333e25048fe98b1c988d1ae9f0be492&t=1696945478" title="物品类型" bind:click="popup_goods" value="{{choose_goods}}" is-link value-class="ziti"/>
+        <van-popup show="{{ goods_show }}" z-index="100" round position="bottom" duration>
+            <van-picker columns="{{ goods }}" show-toolbar title="请选择物品类型" bind:confirm="goods_confirm" bind:cancel="goods_cancel" bind:change="goods_change" />
+        </van-popup>
+         <van-cell title-class="ziti" icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/allocation-%E5%B9%B2%E7%BA%BF%E8%B6%85%E6%97%B6.png?sign=aaeaa10f8427ea3a948d3b4c2330d00f&t=1696950793" title="取货时间" bind:click="popup_starttime" value="{{start_time}}" is-link value-class="ziti"/>
+        <van-popup show="{{ starttime_show }}" z-index="100" round position="bottom" duration>
+            <van-datetime-picker
+              type="year-month date time"
+              min-date="{{ minDate }}"
+              title="选择取货时间"
+              bind:change="starttime_change"
+              bind:confirm="starttime_confirm"
+              bind:cancel="starttime_cancel"
+            />
+        </van-popup> 
+        <view class="checked">
+            <text>是否重物</text>
+            <van-switch checked="{{ checked }}" size="35rpx" bind:change="onChange_check" />
+        </view>
+</view>
+
+
+
+
+
+<!--收件人信息-->
+<view class="jijian">
+        <van-field
+            value="{{ shoujian_name }}"
+            placeholder="请输入收件人"
+            label="收件人"
+            left-icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E5%A5%BD%E5%8F%8B.png?sign=ef0b30bcb5897a61a672256e18c886a0&t=1696945897"
+            clearable
+            label-class="ziti"
+            placeholder-style="font-size:32rpx;"
+            bind:change="onChange_shoujian"
+        />
+        <van-field
+            value="{{ shoujian_phone }}"
+            placeholder="请输入手机号码"
+            label="手机号码"
+            left-icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81.png?sign=2dbbb993ff0b9c8fa95d528f85e4bd7f&t=1696945577"
+            clearable
+            label-class="ziti"
+            placeholder-style="font-size:32rpx;"
+            bind:change="onChange_shoujianphone"
+        />
+
+        <van-field
+            value="{{ end_location }}"
+            placeholder="请输入收货地址"
+            label="收件地点"
+            left-icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E6%94%B6%E8%B4%A7%20%E6%94%B6.png?sign=00ab08f7e3d275ba9c8696d1db983890&t=1696945606"
+            clearable
+            label-class="ziti"
+            input-class="ziti"
+            placeholder-style="font-size:32rpx;"
+            bind:change="onChange_inputend"
+        />
+
+         <van-cell title-class="ziti" icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E5%BE%85%E5%8F%91%E8%B4%A7%E9%80%89%E4%B8%AD.png?sign=100d2331749e7be6ddccc1b0d235525f&t=1696867515" title="送达时间" bind:click="popup_endtime" value="{{end_time}}" is-link value-class="ziti"/>
+        <van-popup show="{{ endtime_show }}" z-index="100" round position="bottom" duration>
+            <van-datetime-picker
+              type="year-month date time"
+              min-date="{{ minDate }}"
+              title="选择送达时间"
+              bind:change="endtime_change"
+              bind:confirm="endtime_confirm"
+              bind:cancel="endtime_cancel"
+            />
+        </van-popup> 
+
+</view>
+
+         <van-field
+            value="{{ cost }}"
+            placeholder="只能输入非零的正整数"
+            label="跑腿费(元)"
+            left-icon="https://636c-cloud1-9gev89rhfb0a2aeb-1320997375.tcb.qcloud.la/%E9%92%B1.png?sign=2021a6e9a1fc0e07a84cc934b4a9bb0f&t=1696857798"
+            clearable
+            label-class="ziti"
+            custom-style="margin-left:20rpx;"
+            placeholder-style="font-size:32rpx;"
+            maxlength="4"
+            error="{{error_red}}"
+            bind:change="onChange_cost"
+        />
+
+        <view class="b_notes">
+            <view class="b_text">
+                  <textarea value="{{notes}}" bindinput="noteInput" maxlength="100" placeholder="如果有其他的要求，可以填写备注告知跑腿员，（非必填）"></textarea>
+                  <view class="b_less">{{note_counts}}/100</view>
+            </view>
+        </view>
+
+        <view class="yuer">
+            <view class="yuer_left">
+                    <view style="font-weight: 400;">使用余额支付</view>
+                    <view class="yuer_leftke">
+                            我的余额 ￥{{balance}} 
+                            <text wx:if="{{cost>balance}}" style="color: red;" bindtap="go_parse">（余额不足）立即充值</text>
+                    </view>
+            </view>
+            <view class="yuer_right">
+                <van-switch checked="{{ user_parse }}" size="35rpx" bind:change="onChange_userparse" />
+            </view>
+        </view>
+        <van-submit-bar
+            price="{{ cost*100 }}"
+            button-text="立即支付"
+            bind:submit="onSubmit"
+        />

@@ -1,0 +1,105 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/wode/wode",
+    "pages/publish/publish",
+    "pages/order/order",
+    "pages/fabu/fabu",
+    "pages/kefu/kefu",
+    "pages/paotui/paotui",
+    "pages/address/address",
+    "pages/wallet/wallet",
+    "pages/recharge/recharge",
+    "pages/reflect/reflect",
+    "pages/take/take",
+    "pages/ji/ji",
+    "pages/buy/buy",
+    "pages/deliver/deliver",
+    "pages/qita/qita",
+    "pages/pub_detail/pub_detail",
+    "pages/advice/advice",
+    "pages/add_address/add_address",
+    "pages/tian/tian",
+    "pages/pingjia/pingjia",
+    "pages/chakan_pingjia/chakan_pingjia",
+    "pages/about/about"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "小优跑腿",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#80848f",
+    "selectedColor": "#2d8cf0",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "images/shouye1.png",
+        "selectedIconPath": "images/shouye1.png"
+      },
+      {
+        "text": "我的发布",
+        "pagePath": "pages/fabu/fabu",
+        "iconPath": "images/fabu11.png",
+        "selectedIconPath": "images/fabu11.png"
+      },
+      {
+        "text": "接单赚钱",
+        "pagePath": "pages/publish/publish",
+        "iconPath": "images/renwu.png",
+        "selectedIconPath": "images/renwu.png"
+      },
+      {
+        "text": "我的接单",
+        "pagePath": "pages/order/order",
+        "iconPath": "images/jiedang.png",
+        "selectedIconPath": "images/jiedang.png"
+      },
+      {
+        "text": "个人中心",
+        "pagePath": "pages/wode/wode",
+        "iconPath": "images/wode.png",
+        "selectedIconPath": "images/wode.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "van-field": "vant/field/index",
+    "van-popup": "vant/popup/index",
+    "van-area": "vant/area/index",
+    "van-cell": "vant/cell/index",
+    "van-cell-group": "vant/cell-group/index",
+    "van-action-sheet": "vant/action-sheet/index",
+    "van-search": "vant/search/index",
+    "van-picker": "vant/picker/index",
+    "van-datetime-picker": "vant/datetime-picker/index",
+    "van-uploader": "vant/uploader/index",
+    "van-notice-bar": "vant/notice-bar/index",
+    "van-icon": "vant/icon/index",
+    "van-tab": "vant/tab/index",
+    "van-tabs": "vant/tabs/index",
+    "van-empty": "vant/empty/index",
+    "van-button": "vant/button/index",
+    "van-switch": "vant/switch/index",
+    "van-submit-bar": "vant/submit-bar/index",
+    "van-radio": "vant/radio/index",
+    "van-radio-group": "vant/radio-group/index",
+    "van-slider": "vant/slider/index",
+    "van-dropdown-menu": "vant/dropdown-menu/index",
+    "van-dropdown-item": "vant/dropdown-item/index",
+    "van-rate": "vant/rate/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+    }
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
